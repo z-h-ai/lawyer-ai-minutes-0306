@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>会议纪要 | 03-06 AI在法律实务中的应用</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #242836;
+    --border: #2e3347;
+    --text: #e4e6ef;
+    --text-dim: #9498ad;
+    --accent: #6c8cff;
+    --accent2: #4ecdc4;
+    --accent3: #ff6b9d;
+    --accent4: #ffd93d;
+    --green: #2ecc71;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    padding: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  header {
+    text-align: center;
+    padding: 2.5rem 2rem;
+    background: linear-gradient(135deg, #1a1d27 0%, #242836 100%);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+  header h1 {
+    font-size: 1.8rem;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+  }
+  header .meta {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+  }
+  header .meta span {
+    display: inline-block;
+    margin: 0.2rem 0.8rem;
+    padding: 0.2rem 0.7rem;
+    background: var(--surface);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+  }
+
+  .section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.8rem 2rem;
+    margin-bottom: 1.5rem;
+  }
+  .section h2 {
+    font-size: 1.3rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .section h2::before {
+    content: '';
+    width: 4px;
+    height: 1.2rem;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+  .section h3 {
+    font-size: 1.05rem;
+    color: var(--accent2);
+    margin: 1.2rem 0 0.6rem;
+  }
+  ul {
+    padding-left: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+  li {
+    margin-bottom: 0.4rem;
+    color: var(--text);
+  }
+  li::marker { color: var(--accent); }
+  .highlight {
+    display: inline-block;
+    padding: 0.1rem 0.5rem;
+    background: rgba(108,140,255,0.12);
+    border: 1px solid rgba(108,140,255,0.25);
+    border-radius: 6px;
+    font-size: 0.88rem;
+    color: var(--accent);
+  }
+  .tag-green {
+    background: rgba(46,204,113,0.12);
+    border-color: rgba(46,204,113,0.25);
+    color: var(--green);
+  }
+  .tag-pink {
+    background: rgba(255,107,157,0.12);
+    border-color: rgba(255,107,157,0.25);
+    color: var(--accent3);
+  }
+  .tag-yellow {
+    background: rgba(255,217,61,0.12);
+    border-color: rgba(255,217,61,0.25);
+    color: var(--accent4);
+  }
+
+  .mermaid-wrap {
+    background: var(--surface2);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+  }
+  .mermaid { text-align: center; }
+
+  .speaker-tag {
+    display: inline-block;
+    padding: 0.15rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    margin-right: 0.3rem;
+  }
+  .speaker-1 { background: rgba(108,140,255,0.2); color: var(--accent); }
+  .speaker-2 { background: rgba(78,205,196,0.2); color: var(--accent2); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+  }
+  th, td {
+    padding: 0.6rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    background: var(--surface2);
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  td { font-size: 0.92rem; }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  @media (max-width: 768px) {
+    .two-col { grid-template-columns: 1fr; }
+    body { padding: 1rem; }
+  }
+
+  .stat-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+  }
+  .stat-card {
+    flex: 1;
+    min-width: 120px;
+    background: var(--surface2);
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+  .stat-card .num {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .stat-card .label {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-top: 0.2rem;
+  }
+
+  .quote {
+    border-left: 3px solid var(--accent2);
+    padding: 0.8rem 1.2rem;
+    background: rgba(78,205,196,0.05);
+    border-radius: 0 8px 8px 0;
+    margin: 0.8rem 0;
+    font-style: italic;
+    color: var(--text-dim);
+  }
+
+  .action-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .action-item:last-child { border: none; }
+  .action-item .checkbox {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--accent);
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 0.3rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>AI 在法律实务中的应用 — 会议纪要</h1>
+  <p class="meta">
+    <span>📅 2026-03-06</span>
+    <span>📍 律所内部</span>
+    <span>⏱ 约30分钟 × 2场</span>
+    <span>📝 内部分享 + 讲座</span>
+  </p>
+</header>
+
+<!-- ==================== 会议概览 ==================== -->
+<div class="section">
+  <h2>会议概览</h2>
+  <p>本次活动包含两场连续分享，围绕 <strong>AI 工具在律师日常工作中的实际应用</strong> 展开，涵盖工具演示、经验交流和行动倡议。</p>
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="num">2</div>
+      <div class="label">分享场次</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">3</div>
+      <div class="label">核心议题</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">6+</div>
+      <div class="label">提及AI工具</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">~50</div>
+      <div class="label">参会律师</div>
+    </div>
+  </div>
+
+  <table>
+    <tr><th>场次</th><th>主讲人</th><th>主题</th><th>侧重点</th></tr>
+    <tr>
+      <td>第一场</td>
+      <td><span class="speaker-tag speaker-1">婷婷律师</span></td>
+      <td>豆包在法律实务中的应用演示</td>
+      <td>实操演示：发票、案例、文书</td>
+    </tr>
+    <tr>
+      <td>第二场</td>
+      <td><span class="speaker-tag speaker-2">王智慧律师</span></td>
+      <td>AI赋能法律实务提效</td>
+      <td>全景视角：工具矩阵、营销、落地策略</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ==================== 整体流程图 ==================== -->
+<div class="section">
+  <h2>会议议程流程</h2>
+  <div class="mermaid-wrap">
+    <div class="mermaid">
+flowchart LR
+  A["🎤 婷婷律师分享"] --> B["发票批量整理"]
+  A --> C["案例检索与分析"]
+  A --> D["法律文书写作"]
+  D --> E["🎤 王智慧律师分享"]
+  E --> F["AI应用现状调研"]
+  E --> G["多工具协同策略"]
+  E --> H["营销场景应用"]
+  E --> I["提示词精准化"]
+  E --> J["🚀 行动倡议"]
+
+  style A fill:#6c8cff,color:#fff,stroke:none
+  style E fill:#4ecdc4,color:#fff,stroke:none
+  style J fill:#ff6b9d,color:#fff,stroke:none
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 第一场：婷婷律师 ==================== -->
+<div class="section">
+  <h2>第一场：豆包在法律实务中的应用 <span class="speaker-tag speaker-1">婷婷律师</span></h2>
+
+  <h3>一、发票批量整理 <span class="highlight">效率提升</span></h3>
+  <ul>
+    <li><strong>操作方式：</strong>将 PDF 发票（一次最多 50 张）拖入豆包，按模板格式自动识别登记</li>
+    <li><strong>登记字段：</strong>序号、开票日期、开票金额、开票单位、税号、发票号码</li>
+    <li><strong>关键技巧：</strong>
+      <ul>
+        <li>提供发票登记模板作为参考，确保输出格式一致</li>
+        <li>明确指令要求"一份不能少"，防止 AI 偷懒遗漏</li>
+        <li>豆包已支持直接生成 Excel 表，可一键下载</li>
+      </ul>
+    </li>
+    <li><strong>效果：</strong>原本数小时的人工录入 → 几秒钟完成全部登记</li>
+  </ul>
+
+  <div class="mermaid-wrap">
+    <div class="mermaid">
+flowchart TD
+    A["📄 下载 PDF 发票"] --> B["批量上传至豆包\n（≤50张/次）"]
+    B --> C["提供发票登记模板"]
+    C --> D["AI 自动识别登记"]
+    D --> E{"数量是否完整？"}
+    E -->|是| F["导出 Excel 下载"]
+    E -->|否| G["追加指令：补充遗漏"]
+    G --> D
+
+    style A fill:#2e3347,color:#e4e6ef,stroke:#6c8cff
+    style F fill:#2ecc71,color:#fff,stroke:none
+    style G fill:#ff6b9d,color:#fff,stroke:none
+    </div>
+  </div>
+
+  <h3>二、案例检索与分析报告 <span class="highlight">深度分析</span></h3>
+  <ul>
+    <li><strong>数据来源：</strong>无讼、微科等法律数据库，一次下载 50-100 个类案</li>
+    <li><strong>上传与指令：</strong>上传案例文档后，指定分析维度：
+      <ul>
+        <li>判决时间、法院、基本案情</li>
+        <li>争议焦点、主要证据</li>
+        <li>法院认定与裁判结果</li>
+      </ul>
+    </li>
+    <li><strong>进阶应用：</strong>基于归纳结果，进一步提取特定胜诉/败诉要素
+      <ul>
+        <li>例：代表原告方 → 提取有利判例和胜诉关键点</li>
+        <li>AI 可从大量案例中自动筛选匹配案例并生成深度报告</li>
+      </ul>
+    </li>
+    <li><strong>注意事项：</strong>AI 可能遗漏案例（50→17），需追加指令要求补充完整</li>
+  </ul>
+
+  <div class="mermaid-wrap">
+    <div class="mermaid">
+flowchart TD
+    A["🔍 从法律数据库\n下载类案50-100个"] --> B["上传至豆包"]
+    B --> C["发出分析指令\n（维度：时间/法院/案情/焦点/证据/结果）"]
+    C --> D["AI 生成案例归纳报告"]
+    D --> E{"案例是否完整？"}
+    E -->|否| F["追加指令补充"]
+    F --> D
+    E -->|是| G["进阶指令：\n提取胜诉/败诉要素"]
+    G --> H["AI 生成针对性分析报告"]
+
+    style A fill:#2e3347,color:#e4e6ef,stroke:#4ecdc4
+    style H fill:#4ecdc4,color:#fff,stroke:none
+    </div>
+  </div>
+
+  <h3>三、法律文书写作 <span class="highlight">多场景覆盖</span></h3>
+  <ul>
+    <li><strong>服务方案与报价函</strong>
+      <ul>
+        <li>上传参考模板 + 交代客户背景 → 1-2分钟生成，比人工撰写更全面专业</li>
+      </ul>
+    </li>
+    <li><strong>年度服务报告</strong>
+      <ul>
+        <li>上传历史报告模板 + 工作记录 → 自动生成，不满意可迭代优化</li>
+      </ul>
+    </li>
+    <li><strong>法律咨询回复</strong>
+      <ul>
+        <li>复制客户咨询内容（隐去个人信息），设定角色定位（公司法律师/法官/资深律师等）</li>
+        <li>结合法律法规给出专业建议，可进一步生成协议草稿</li>
+      </ul>
+    </li>
+    <li><strong>答辩状</strong>
+      <ul>
+        <li>上传原告起诉状 + 被告证据 → 交代辩护角度和要点 → 生成基本可用的答辩状</li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="quote">
+    "豆包出来之后，至少实习生的事情完全可以替代。一到两年的执业律师的工作基本上豆包也可以完成，就看你给他发出什么样的指令。" —— 婷婷律师
+  </div>
+
+  <div class="mermaid-wrap">
+    <div class="mermaid">
+flowchart LR
+    subgraph 输入
+      A["📋 参考模板"]
+      B["📝 客户背景/案情"]
+      C["🎭 角色设定"]
+    end
+    subgraph AI处理
+      D["豆包生成初稿"]
+      E["迭代优化"]
+    end
+    subgraph 输出
+      F["报价函"]
+      G["服务报告"]
+      H["咨询回复"]
+      I["答辩状/协议"]
+    end
+    A --> D
+    B --> D
+    C --> D
+    D --> E
+    E --> F
+    E --> G
+    E --> H
+    E --> I
+
+    style D fill:#6c8cff,color:#fff,stroke:none
+    style E fill:#4ecdc4,color:#fff,stroke:none
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 第二场：王智慧律师 ==================== -->
+<div class="section">
+  <h2>第二场：AI赋能法律实务提效 <span class="speaker-tag speaker-2">王智慧律师</span></h2>
+
+  <h3>一、行业AI应用现状调研（现场互动）</h3>
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="num">~50</div>
+      <div class="label">用AI做过PPT</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">4</div>
+      <div class="label">2h内完成可用PPT</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">5</div>
+      <div class="label">每天使用AI≥40min</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">2</div>
+      <div class="label">同时使用≥3个AI</div>
+    </div>
+  </div>
+
+  <div class="quote">
+    "不管好不好用，我们站在这个时代，我们一定要下场。" —— 王智慧律师
+  </div>
+
+  <h3>二、律师行业痛点与AI解法</h3>
+  <ul>
+    <li><strong>案源不稳定，获客压力大</strong> → AI 营销提效（视频号、公众号、朋友圈）</li>
+    <li><strong>重复劳动占用大量时间</strong> → 合同审查从 4 小时 → 30 分钟</li>
+    <li><strong>同质化竞争严重</strong> → 多工具协同差异化竞争</li>
+  </ul>
+
+  <div class="mermaid-wrap">
+    <div class="mermaid">
+flowchart TD
+    subgraph 痛点
+      P1["案源不稳定\n获客压力大"]
+      P2["重复劳动\n效率低下"]
+      P3["同质化竞争"]
+    end
+    subgraph AI解法
+      S1["🎬 视频号 + 公众号\n+ 朋友圈运营"]
+      S2["🤖 合同审查/文书生成\n4h → 30min"]
+      S3["🔀 多AI工具协同\n差异化输出"]
+    end
+    P1 --> S1
+    P2 --> S2
+    P3 --> S3
+
+    style P1 fill:#ff6b9d,color:#fff,stroke:none
+    style P2 fill:#ff6b9d,color:#fff,stroke:none
+    style P3 fill:#ff6b9d,color:#fff,stroke:none
+    style S1 fill:#2ecc71,color:#fff,stroke:none
+    style S2 fill:#2ecc71,color:#fff,stroke:none
+    style S3 fill:#2ecc71,color:#fff,stroke:none
+    </div>
+  </div>
+
+  <h3>三、AI工具矩阵</h3>
+  <table>
+    <tr><th>工具</th><th>定位</th><th>适用场景</th><th>评价</th></tr>
+    <tr>
+      <td>豆包</td>
+      <td>通用AI助手</td>
+      <td>发票登记、文书写作、案例分析</td>
+      <td>响应快，效率优先</td>
+    </tr>
+    <tr>
+      <td>通义</td>
+      <td>基础工具</td>
+      <td>录音转写、约谈总结</td>
+      <td>较基础，适合辅助工作</td>
+    </tr>
+    <tr>
+      <td>阿尔法AI</td>
+      <td>法律专业工具</td>
+      <td>法条检索、类案匹配、大数据报告</td>
+      <td>持续迭代进步，法律垂直可信赖</td>
+    </tr>
+    <tr>
+      <td>腾讯元宝</td>
+      <td>通用AI助手</td>
+      <td>对比验证</td>
+      <td>可作为第二意见来源</td>
+    </tr>
+    <tr>
+      <td>天使大家</td>
+      <td>法律检索</td>
+      <td>法条、判决检索</td>
+      <td>行业熟知工具</td>
+    </tr>
+    <tr>
+      <td>ChatGPT</td>
+      <td>通用AI</td>
+      <td>–</td>
+      <td>速度较慢，效率不够</td>
+    </tr>
+  </table>
+
+  <div class="quote">
+    "同样的输入条件，用豆包、元宝、其他工具，结果肯定不一样。判断哪个最好——就是我们经验的核心。" —— 王智慧律师
+  </div>
+
+  <h3>四、营销场景应用</h3>
+  <ul>
+    <li><strong>视频号：</strong>呼吁所有律师开通，不只是短视频，是向客户展示"我们在做什么"</li>
+    <li><strong>朋友圈：</strong>从"打卡旅游"转向展示专业价值——"你体现的价值在哪？"</li>
+    <li><strong>公众号多功能定位：</strong>
+      <ul>
+        <li>出书素材积累</li>
+        <li>软广告渠道</li>
+        <li>专业背书</li>
+        <li>微课程钩子</li>
+        <li>知识体系搭建</li>
+      </ul>
+    </li>
+    <li><strong>私域运营：</strong>私域群 → 钩子产品 → 课程产品 → 转化链路</li>
+  </ul>
+
+  <div class="mermaid-wrap">
+    <div class="mermaid">
+flowchart LR
+    A["👤 律师个人IP"] --> B["📱 视频号\n展示在做什么"]
+    A --> C["💬 朋友圈\n展示专业价值"]
+    A --> D["📖 公众号\n知识体系"]
+    D --> E["出书素材"]
+    D --> F["软广告"]
+    D --> G["专业背书"]
+    D --> H["微课程钩子"]
+    C --> I["🏘 私域群"]
+    I --> J["钩子产品"]
+    J --> K["课程产品"]
+    K --> L["💰 转化"]
+
+    style A fill:#6c8cff,color:#fff,stroke:none
+    style L fill:#2ecc71,color:#fff,stroke:none
+    </div>
+  </div>
+
+  <h3>五、提示词精准化方法论</h3>
+  <ul>
+    <li><strong>角色设定：</strong>明确"我是谁"——专业律师、代理哪方、什么经验、什么领域</li>
+    <li><strong>背景信息要充分：</strong>企业行业地位、核心业务、竞争对手等全部喂给 AI</li>
+    <li><strong>任务要具体：</strong>审查什么合同、要解决什么问题、从什么角度分析</li>
+    <li><strong>多版本对比：</strong>同一任务丢给 3+ 个 AI，对比选择最优结果</li>
+  </ul>
+
+  <div class="mermaid-wrap">
+    <div class="mermaid">
+flowchart TD
+    A["🎯 精准提示词公式"] --> B["1️⃣ 角色设定\n我是XX律师，代理XX方"]
+    A --> C["2️⃣ 背景信息\n企业/行业/竞争对手全貌"]
+    A --> D["3️⃣ 具体任务\n审查/分析/生成什么"]
+    A --> E["4️⃣ 多版本交叉验证\n≥3个AI同时跑"]
+    B --> F["🏆 高质量输出"]
+    C --> F
+    D --> F
+    E --> F
+
+    style A fill:#ffd93d,color:#1a1d27,stroke:none
+    style F fill:#2ecc71,color:#fff,stroke:none
+    </div>
+  </div>
+
+  <h3>六、PPT 制作经验</h3>
+  <ul>
+    <li>以前做一个 PPT 至少 3 天 → 现在 2 小时完成</li>
+    <li><strong>工作流：</strong>
+      <ul>
+        <li>先让 AI 生成结构性框架（设定受众和主题）</li>
+        <li>将框架丢给 3+ 个 AI 分别生成版本</li>
+        <li>可指定特定风格（如"以某老师的风格讲痛点"）</li>
+        <li>对比选择最优，再做细节调整</li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<!-- ==================== 底线与合规 ==================== -->
+<div class="section">
+  <h2>合规与底线提醒</h2>
+  <ul>
+    <li><span class="highlight tag-pink">🚫 绝对底线</span> AI 输出必须<strong>透明</strong>，所有内容需人工审核后使用</li>
+    <li><span class="highlight tag-pink">🚫 隐私保护</span> 输入客户信息前做隐私屏蔽，完成后<strong>立即删除对话记录</strong></li>
+    <li><span class="highlight tag-yellow">⚠️ 事实核查</span> AI 可能生成错误法条/案例引用，必须核对原始来源</li>
+    <li><span class="highlight tag-green">✅ 最佳实践</span> AI 作为辅助工具，最终判断权在律师</li>
+  </ul>
+</div>
+
+<!-- ==================== 核心要点总结 ==================== -->
+<div class="section">
+  <h2>核心要点总结</h2>
+
+  <div class="mermaid-wrap">
+    <div class="mermaid">
+mindmap
+  root((AI赋能<br>法律实务))
+    效率提升
+      发票登记：秒级完成
+      合同审查：4h→30min
+      文书写作：1-2min出稿
+      PPT制作：3天→2小时
+    工具策略
+      通用工具：豆包/元宝
+      专业工具：阿尔法AI
+      多工具交叉验证
+    营销获客
+      视频号运营
+      朋友圈价值展示
+      公众号知识体系
+      私域转化链路
+    提示词方法
+      角色设定
+      充分背景
+      具体任务
+      迭代优化
+    底线原则
+      透明使用
+      隐私保护
+      人工审核
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 行动项 ==================== -->
+<div class="section">
+  <h2>行动项（Action Items）</h2>
+  <div class="action-item">
+    <div class="checkbox"></div>
+    <div>
+      <strong>建立 AI 学习交流群</strong>
+      <span class="highlight tag-green">王智慧律师发起</span><br>
+      <span style="color:var(--text-dim)">现场面对面建群，不论新手老手，分享 AI 使用心得和问题</span>
+    </div>
+  </div>
+  <div class="action-item">
+    <div class="checkbox"></div>
+    <div>
+      <strong>婷婷律师发送实操指令模板到群</strong>
+      <span class="highlight">待发送</span><br>
+      <span style="color:var(--text-dim)">包括发票登记指令、案例分析指令、文书写作指令等</span>
+    </div>
+  </div>
+  <div class="action-item">
+    <div class="checkbox"></div>
+    <div>
+      <strong>每位律师完成 AI 工具盘点表</strong>
+      <span class="highlight tag-yellow">王智慧律师提供表格</span><br>
+      <span style="color:var(--text-dim)">记录手机/iPad/电脑各装了哪些 AI 工具，使用频率和场景</span>
+    </div>
+  </div>
+  <div class="action-item">
+    <div class="checkbox"></div>
+    <div>
+      <strong>全员开通视频号</strong>
+      <span class="highlight tag-pink">长期行动</span><br>
+      <span style="color:var(--text-dim)">展示律师专业价值，不追求质量，关键是"做起来"</span>
+    </div>
+  </div>
+  <div class="action-item">
+    <div class="checkbox"></div>
+    <div>
+      <strong>半年后复盘分享会</strong>
+      <span class="highlight">远期规划</span><br>
+      <span style="color:var(--text-dim)">分享各自 AI 应用成果，交流最佳实践</span>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 效率对比 ==================== -->
+<div class="section">
+  <h2>效率提升对比</h2>
+  <div class="mermaid-wrap">
+    <div class="mermaid">
+%%{init: {'theme': 'dark'}}%%
+xychart-beta
+    title "AI前后工时对比（小时）"
+    x-axis ["发票登记\n(50张)", "案例分析\n(50个)", "服务报价函", "合同审查", "PPT制作"]
+    y-axis "工时（小时）" 0 --> 30
+    bar [4, 8, 2, 4, 24]
+    bar [0.02, 0.5, 0.03, 0.5, 2]
+    </div>
+  </div>
+</div>
+
+<footer style="text-align:center; padding:2rem; color:var(--text-dim); font-size:0.8rem;">
+  基于 03-06 两场会议录音转写整理 | 会议纪要由 AI 辅助生成，请以实际发言为准
+</footer>
+
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'dark',
+    themeVariables: {
+      primaryColor: '#6c8cff',
+      primaryTextColor: '#e4e6ef',
+      primaryBorderColor: '#2e3347',
+      lineColor: '#4ecdc4',
+      secondaryColor: '#242836',
+      tertiaryColor: '#1a1d27',
+      fontFamily: 'PingFang SC, Microsoft YaHei, sans-serif'
+    },
+    flowchart: { curve: 'basis', padding: 15 },
+    mindmap: { padding: 20 }
+  });
+</script>
+
+</body>
+</html>
